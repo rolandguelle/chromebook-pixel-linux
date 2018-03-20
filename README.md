@@ -3,8 +3,13 @@
 I've the luck to catch a Chrome Book Pixel (Link / 2013).
 The goal is to setup a dev machine with Linux.
 
+**Work in Progress**
+
 ## Preparation
 
+* Remove ChromeOS
+  * https://mrchromebox.tech/#devmode
+  * https://chrx.org/
 * BIOS
   * Remove BIOS HW Screw
   * Replace BIOS
@@ -19,5 +24,45 @@ The goal is to setup a dev machine with Linux.
 
 ## Install
 
-* GalliumOS
-  * https://galliumos.org/releases/nightly/galliumos-braswell-xenon-20171227T072217Z.iso
+### GalliumOS
+
+https://galliumos.org/releases/nightly/galliumos-braswell-xenon-20171227T072217Z.iso
+ 
+### libinput
+
+sudo apt install xserver-xorg-input-libinput
+sudo mkdir /etc/X11/xorg.conf.d/
+sudo nano /etc/X11/xorg.conf.d/30-touchpad.conf
+
+Section "InputClass"
+  Identifier "MyTouchpad"
+  MatchIsTouchpad "on"
+  Driver "libinput"
+  Option "Tapping" "on"
+EndSection
+
+tmp fix:
+https://github.com/raphael/linux-samus/issues/195
+xinput set-prop 11 277 1
+
+### libinput-gestures
+
+* install
+* configure
+
+## Tweaks
+
+### Fonts
+
+* Settings
+* Appearance
+* Custom DPI Settings: 148
+
+### Capitaine Cursors
+
+git clone https://github.com/keeferrourke/capitaine-cursors.git
+* Settings
+* Mouse & Touchpad
+* Theme
+* Capitaine Cursors
+* Cursor Size: 38
