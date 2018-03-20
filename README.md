@@ -17,7 +17,7 @@ The goal is to setup a dev machine with Linux.
       * Card 1 /home
       * Card 2 Documents
 
-## Install 
+## Install
 
 * GalliumOS
   * https://galliumos.org/releases/nightly/galliumos-braswell-xenon-20171227T072217Z.iso
