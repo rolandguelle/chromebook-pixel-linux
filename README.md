@@ -12,7 +12,7 @@ NOTE: Don't mind me if you brick your machine :)
   - [Preparation](#preparation)
     - [Remove ChromeOS](#remove-chromeos)
     - [BIOS](#bios)
-    - [Expand Hard Drive Capacity](#expand-hard-drive-capacity)
+    - [Expand your Hard Drive Capacity](#expand-your-hard-drive-capacity)
   - [Install](#install)
     - [Antergos](#antergos)
       - [libinput-gestures](#libinput-gestures)
@@ -21,14 +21,16 @@ NOTE: Don't mind me if you brick your machine :)
       - [Fonts](#fonts)
       - [Capitaine Cursors](#capitaine-cursors)
       - [Power Management](#power-management)
-    - [GalliumOS](#galliumos)
-      - [libinput](#libinput)
       - [Keyboard](#keyboard)
-      - [Disable bluetooth](#disable-bluetooth)
-      - [WIFI / WLAN](#wifi-wlan)
-  - [WIP](#wip)
-    - [lightdm](#lightdm)
-    - [suspend](#suspend)
+      - [Compositor](#compositor)
+    - [GalliumOS](#galliumos)
+      - [Issues](#issues)
+        - [libinput](#libinput)
+        - [Keyboard](#keyboard)
+        - [Disable bluetooth](#disable-bluetooth)
+        - [WIFI](#wifi)
+        - [Font-size at lightdm](#font-size-at-lightdm)
+        - [Suspend](#suspend)
 
 <!-- /TOC -->
 
@@ -48,13 +50,36 @@ NOTE: Don't mind me if you brick your machine :)
   * https://mrchromebox.tech/#fwscript
   * Install/Update Custom coreboot Firmware (Full ROM)
 
-### Expand Hard Drive Capacity
+### Expand your Hard Drive Capacity
+
+There 
 
 * Replace "LTE Slot Dummy" with "Mini PCIe Memory Card Adapter"
-  * https://www.amazon.de/gp/product/B01AOVJ456/ref=oh_aui_detailpage_o04_s00?ie=UTF8&psc=1
+  * mSATA doesn't work :(
+    * https://www.youtube.com/watch?v=x0_u8bjQFzg
+  * But this adapter works :)
+    * https://www.amazon.de/gp/product/B01AOVJ456/ref=oh_aui_detailpage_o04_s00?ie=UTF8&psc=1
 * Expand with 2 SD Cards
     * Card 1 (Used for /home)
     * Card 2 (Used for develpment storage)
+
+Benchmarks:
+
+```
+sudo hdparm -Tt /dev/sda
+```
+
+* /dev/sda:
+  * Timing cached reads:   7618 MB in  2.00 seconds = 3816.76 MB/sec
+  * Timing buffered disk reads: 1394 MB in  3.00 seconds = 464.49 MB/sec
+* /dev/sdb:
+  * Timing cached reads:   8574 MB in  2.00 seconds = 4297.24 MB/sec
+  * Timing buffered disk reads:  52 MB in  3.04 seconds =  17.12 MB/sec
+* /dev/sdc:
+  * Timing cached reads:   8398 MB in  2.00 seconds = 4208.85 MB/sec
+  * Timing buffered disk reads:  52 MB in  3.06 seconds =  16.97 MB/sec
+
+Slow but enough storage!
 
 ## Install
 
@@ -113,15 +138,29 @@ sudo systemctl enable tlp
 sudo systemctl enable tlp-sleep
 ```
 
+#### Keyboard
+
+```
+localectl set-x11-keymap de chromebook
+```
+
+#### Compositor
+
+* Settings
+* Window Manager Tweaks
+* Disable
 
 ### GalliumOS
 
-My first try, but I've problems with WIFI:
-https://galliumos.org/releases/nightly/galliumos-braswell-xenon-20171227T072217Z.iso
+My first try, but I've problems with WIFI.
 
-Other Issues
+As describted at https://mrchromebox.tech, I tried 2.2:
 
-#### libinput
+* https://galliumos.org/releases/nightly/galliumos-braswell-xenon-20171227T072217Z.iso
+
+#### Issues
+
+##### libinput
 
 ```
 sudo apt install xserver-xorg-input-libinput
@@ -145,11 +184,11 @@ Tmp fix:
 xinput set-prop 11 277 1
 ```
 
-#### Keyboard
+##### Keyboard
 
 Keyboard, Layout, Chromebook (most models), No overlay
 
-#### Disable bluetooth
+##### Disable bluetooth
 
 ```
 sudo apt-get install dconf
@@ -158,20 +197,26 @@ navigate to org.blueman.plugins.powermanager
 set "auto-power-on" to "false"
 ```
 
-#### WIFI / WLAN
+##### WIFI
 
 GalliumOS lost connectivity :(
 
-https://github.com/GalliumOS/galliumos-distro/issues/253
+* https://github.com/GalliumOS/galliumos-distro/issues/253
 
+At this moment, no fix.
 
-## WIP
+##### Font-size at lightdm
 
-### lightdm
+* dpi setting // font
 
-* xdp // font
+something like:
+```
+# /etc/lightdm/lightdm.conf.d/dpi.conf
+[SeatDefaults]
+xserver-command=X -dpi 162
+```
 
-### suspend
+##### Suspend
 
 needed?
 
