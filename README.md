@@ -104,12 +104,19 @@ Slow but enough storage!
 
 * Appearance
   * Style
-    * Arc-solid
+    * Numix-Frost-Light
   * Icons
-    * Numix Circle
+    * Numix-Circle-Light
 * Windows Manager
   * Style
     * Arc-solid
+* qt5ct
+  * Style
+    * gtk
+  * Fonts
+    * Roboto Regular 10
+  * Icon Theme
+    * Numix-Circle-Light
 
 #### Fonts
 
