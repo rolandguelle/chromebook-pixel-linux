@@ -23,6 +23,7 @@ NOTE: Don't mind me if you brick your machine :)
       - [Power Management](#power-management)
       - [Keyboard](#keyboard)
       - [Compositor](#compositor)
+      - [lightdm](#lightdm)
     - [GalliumOS](#galliumos)
       - [Issues](#issues)
         - [libinput](#libinput)
@@ -110,7 +111,7 @@ Windows Manager Style
 * Settings
 * Appearance
 * Roboto 10
-* Custom DPI Settings: 162
+* Custom DPI Settings: 150
 
 #### Capitaine Cursors
 
@@ -149,6 +150,19 @@ localectl set-x11-keymap de chromebook
 * Settings
 * Window Manager Tweaks
 * Disable
+
+#### lightdm
+
+* Install lightdm-gtk-greeter
+* /etc/lightdm/lightdm.conf 
+* greeter-session=lightdm-gtk-greeter
+  * lightdm-gtk-greeter settings
+    * Appearance
+      * Additional font options
+        * DPI: 150
+        * Font: Roboto Regular
+        * Theme / Icons ...
+
 
 ### GalliumOS
 
