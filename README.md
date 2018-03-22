@@ -17,9 +17,9 @@ NOTE: Don't mind me if you brick your machine :)
     - [Antergos](#antergos)
       - [libinput-gestures](#libinput-gestures)
     - [Tweaks](#tweaks)
-      - [Theme](#theme)
+      - [Theme & Icons](#theme-icons)
       - [Fonts](#fonts)
-      - [Capitaine Cursors](#capitaine-cursors)
+      - [Cursor](#cursor)
       - [Power Management](#power-management)
       - [Keyboard](#keyboard)
       - [Compositor](#compositor)
@@ -100,32 +100,34 @@ Slow but enough storage!
 
 ### Tweaks
 
-#### Theme
+#### Theme & Icons
 
-Style
-* Arc-GalliumOS
-Icons
-* Numix Circle GalliumOS
-Windows Manager Style
-* Arc-GalliumOS
+* Appearance
+  * Style
+    * Arc-solid
+  * Icons
+    * Numix Circle
+* Windows Manager
+  * Style
+    * Arc-solid
 
 #### Fonts
 
 * Settings
-* Appearance
-* Roboto 10
-* Custom DPI Settings: 150
+  * Appearance
+    * Roboto 10 (Install)
+    * Custom DPI Settings: 150
 
-#### Capitaine Cursors
+#### Cursor
 
-Install https://github.com/keeferrourke/capitaine-cursors
-
+* Install
+  * capitaine-cursors
 * Settings
-* Mouse & Touchpad
-* Theme
-* Capitaine Cursors
-* Cursor Size: 38
- (a bit large, but... )
+  * Mouse & Touchpad
+    * Theme
+      * Capitaine Cursors
+      * Cursor Size: 38
+      * (a bit large, but... )
 
 #### Power Management
 
@@ -165,8 +167,12 @@ localectl set-x11-keymap de chromebook
 
 * Install lightdm-gtk-greeter
 * /etc/lightdm/lightdm.conf 
-* greeter-session=lightdm-gtk-greeter
-  * lightdm-gtk-greeter settings
+  * greeter-session=lightdm-gtk-greeter
+  * greeter-show-manual-login = true
+  * greeter-hide-users = true
+  * greeter-allow-guest=false
+  * allow-guest = false
+* lightdm-gtk-greeter settings
     * Appearance
       * Additional font options
         * DPI: 150
