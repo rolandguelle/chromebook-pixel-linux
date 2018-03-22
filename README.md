@@ -53,7 +53,7 @@ NOTE: Don't mind me if you brick your machine :)
 
 ### Expand your Hard Drive Capacity
 
-There 
+Adding more storage to the Chromebook Pixel!
 
 * Replace "LTE Slot Dummy" with "Mini PCIe Memory Card Adapter"
   * mSATA doesn't work :(
@@ -66,7 +66,7 @@ There
 
 Benchmarks:
 
-```
+```shell
 sudo hdparm -Tt /dev/sda
 ```
 
@@ -86,7 +86,10 @@ Slow but enough storage!
 
 ### Antergos
 
-https://antergos.com/
+* Install OS
+  * https://antergos.com/
+* Boot Manager
+  * systemd-boot
 
 #### libinput-gestures
 
@@ -128,28 +131,35 @@ Install https://github.com/keeferrourke/capitaine-cursors
 
 Install TLP tools:
 
-```
+```shell
 sudo pacman -S tlp tlp-rdw
 ```
 
 Enable TLP tools:
 
-```
+```shell
 sudo systemctl enable tlp
 sudo systemctl enable tlp-sleep
 ```
 
 #### Keyboard
 
-```
+"de" for a German keymap, replace with your flavor:
+
+```shell
 localectl set-x11-keymap de chromebook
 ```
 
 #### Compositor
 
-* Settings
-* Window Manager Tweaks
-* Disable
+* Disable XFCE Compositor
+  * Settings  
+  * Window Manager Tweaks
+  * Disable
+* Install compton
+  * cp conf/compton.conf .config/
+* Autostart
+  * cp conf/compton.desktop ./config/autostart/
 
 #### lightdm
 
@@ -176,7 +186,7 @@ As describted at https://mrchromebox.tech, I tried 2.2:
 
 ##### libinput
 
-```
+```shell
 sudo apt install xserver-xorg-input-libinput
 sudo mkdir /etc/X11/xorg.conf.d/
 sudo nano /etc/X11/xorg.conf.d/30-touchpad.conf
@@ -204,7 +214,7 @@ Keyboard, Layout, Chromebook (most models), No overlay
 
 ##### Disable bluetooth
 
-```
+```shell
 sudo apt-get install dconf
 dconf-editor
 navigate to org.blueman.plugins.powermanager
