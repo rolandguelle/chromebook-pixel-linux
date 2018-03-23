@@ -1,6 +1,6 @@
 # Linux on Chrome Book Pixel (Link)
 
-My Linux setup on a **Chrome Book Pixel** (Link / 2013) with a lightweight WM (XFCE4).
+Linux setup on a **Chrome Book Pixel** (Link / 2013) with a light weight WM (XFCE4).
 
 NOTE: Don't mind me if you brick your machine :)
 
@@ -24,6 +24,7 @@ NOTE: Don't mind me if you brick your machine :)
       - [Keyboard](#keyboard)
       - [Compositor](#compositor)
       - [lightdm](#lightdm)
+      - [Backlight Brightness](#backlight-brightness)
     - [GalliumOS](#galliumos)
       - [Issues](#issues)
         - [libinput](#libinput)
@@ -31,7 +32,8 @@ NOTE: Don't mind me if you brick your machine :)
         - [Disable bluetooth](#disable-bluetooth)
         - [WIFI](#wifi)
         - [Font-size at lightdm](#font-size-at-lightdm)
-        - [Suspend](#suspend)
+  - [TODO List](#todo-list)
+    - [Suspend](#suspend)
 
 <!-- /TOC -->
 
@@ -49,7 +51,7 @@ NOTE: Don't mind me if you brick your machine :)
   * https://www.ifixit.com/Guide/Remove+the+Write+Protect+Screw/86362
 * Replace BIOS
   * https://mrchromebox.tech/#fwscript
-  * Install/Update Custom coreboot Firmware (Full ROM)
+  * Install custom coreboot firmware (Full ROM)
 
 ### Expand your Hard Drive Capacity
 
@@ -90,6 +92,10 @@ Slow but enough storage!
   * https://antergos.com/
 * Boot Manager
   * systemd-boot
+  * Add kernel parameter
+    * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
+    * /boot/loader/entries/antergos.conf
+    * modprobe.blacklist=ehci_pci
 
 #### libinput-gestures
 
@@ -186,6 +192,23 @@ localectl set-x11-keymap de chromebook
         * Font: Roboto Regular
         * Theme / Icons ...
 
+#### Backlight Brightness
+
+* Install
+  * https://github.com/wavexx/acpilight
+* Add user to video group
+  * sudo gpasswd -a $USER video
+* add udev rule
+  * /etc/udev/rules.d/90-backlight.rules
+* sudo cp bin/brightness /usr/local/bin
+* Settings
+  * Keyboard
+    * Add Rule for Display
+      * /usr/local/bin/brightness up intel_backlight
+      * /usr/local/bin/brightness down intel_backlight
+    * Add Rule for Keyboard
+      * /usr/local/bin/brightness up chromeos::kbd_backlight
+      * /usr/local/bin/brightness down chromeos::kbd_backlight
 
 ### GalliumOS
 
@@ -253,8 +276,12 @@ something like:
 xserver-command=X -dpi 162
 ```
 
-##### Suspend
+## TODO List
+
+### Suspend
 
 needed?
-
+I've temporary problems, but seems to be more an issue with the screen saver?
 * tpm_tis force=1 interrupts=0
+* tried
+  * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters

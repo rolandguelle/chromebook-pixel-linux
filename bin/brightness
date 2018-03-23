@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# constants - edit as required
+UPPER=100
+LOWER=0
+INCREMENT=10
+DECREMENT=10
+
+DEVICE=$2
+
+# current xbacklight value
+CURRENT=`xbacklight -get -ctrl $DEVICE | sed -e 's/\..*//g'`
+NEW=$CURRENT
+
+
+case $1 in
+	up)
+		if [ $(($CURRENT+$INCREMENT)) -le $UPPER ]; then
+			NEW=$(($CURRENT+$INCREMENT))
+		fi
+	;;
+	down)
+		if [ $(($CURRENT-$DECREMENT)) -ge $LOWER ]; then
+			NEW=$(($CURRENT-$DECREMENT))
+		fi
+	;;
+	*)
+		echo "Usage: brightness up|down <device>"
+		echo "Example: brightness down"
+	;;
+esac
+
+# set the new backlight 
+xbacklight -set $NEW -ctrl $DEVICE
+
+exit 0
