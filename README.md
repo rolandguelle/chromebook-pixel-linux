@@ -1,6 +1,6 @@
 # Linux on Chrome Book Pixel (Link)
 
-Linux setup on a **Chrome Book Pixel** (Link / 2013) with a light weight WM (XFCE4).
+**Chrome Book Pixel** (Link / 2013) Linux setup with a light weight WM (XFCE4).
 
 NOTE: Don't mind me if you brick your machine :)
 
@@ -32,8 +32,7 @@ NOTE: Don't mind me if you brick your machine :)
         - [Disable bluetooth](#disable-bluetooth)
         - [WIFI](#wifi)
         - [Font-size at lightdm](#font-size-at-lightdm)
-  - [TODO List](#todo-list)
-    - [Suspend](#suspend)
+  - [WIP](#wip)
 
 <!-- /TOC -->
 
@@ -57,7 +56,7 @@ NOTE: Don't mind me if you brick your machine :)
 
 Adding more storage to the Chromebook Pixel!
 
-* Replace "LTE Slot Dummy" with "Mini PCIe Memory Card Adapter"
+* Replace "LTE Dummy Slot" with "Mini PCIe Memory Card Adapter"
   * mSATA doesn't work :(
     * https://www.youtube.com/watch?v=x0_u8bjQFzg
   * But this adapter works :)
@@ -276,12 +275,11 @@ something like:
 xserver-command=X -dpi 162
 ```
 
-## TODO List
+## WIP
 
-### Suspend
-
-needed?
-I've temporary problems, but seems to be more an issue with the screen saver?
-* tpm_tis force=1 interrupts=0
-* tried
+Temporary problems with suspend and video
+* xf86-video-intel driver
+* kernel parameter tpm_tis.force=1 tpm_tis.interrupts=0
   * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
+  * https://wiki.gentoo.org/wiki/Google_Chromebook_Pixel_LTE
+  * https://github.com/longsleep/pixel-linux
