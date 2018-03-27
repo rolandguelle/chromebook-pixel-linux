@@ -1,6 +1,6 @@
-# Linux on Chrome Book Pixel (Link)
+# Linux on Chrome Book Pixel
 
-**Chrome Book Pixel** (Link / 2013) Linux setup with a light weight WM (XFCE4).
+**Chrome Book Pixel** (Link / 2013) Linux setup with coreboot BIOS, storage and with a light weight WM (XFCE4).
 
 NOTE: Don't mind me if you brick your machine :)
 
@@ -8,7 +8,7 @@ NOTE: Don't mind me if you brick your machine :)
 
 <!-- TOC -->
 
-- [Linux on Chrome Book Pixel (Link)](#linux-on-chrome-book-pixel-link)
+- [Linux on Chrome Book Pixel](#linux-on-chrome-book-pixel)
   - [Preparation](#preparation)
     - [Remove ChromeOS](#remove-chromeos)
     - [BIOS](#bios)
@@ -33,6 +33,7 @@ NOTE: Don't mind me if you brick your machine :)
         - [WIFI](#wifi)
         - [Font-size at lightdm](#font-size-at-lightdm)
   - [WIP](#wip)
+    - [Temporary problems with suspend and video](#temporary-problems-with-suspend-and-video)
 
 <!-- /TOC -->
 
@@ -81,7 +82,7 @@ sudo hdparm -Tt /dev/sda
   * Timing cached reads:   8398 MB in  2.00 seconds = 4208.85 MB/sec
   * Timing buffered disk reads:  52 MB in  3.06 seconds =  16.97 MB/sec
 
-Slow but enough storage!
+Slow, but enough storage!
 
 ## Install
 
@@ -94,7 +95,6 @@ Slow but enough storage!
   * Add kernel parameter
     * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
     * /boot/loader/entries/antergos.conf
-    * modprobe.blacklist=ehci_pci
 
 #### libinput-gestures
 
@@ -115,6 +115,8 @@ Slow but enough storage!
 * Windows Manager
   * Style
     * Arc-solid
+    * Title Font
+      * Roboto 8
 * qt5ct
   * Style
     * gtk
@@ -128,7 +130,7 @@ Slow but enough storage!
 * Settings
   * Appearance
     * Roboto 10 (Install)
-    * Custom DPI Settings: 150
+    * Custom DPI Settings: 170
 
 #### Cursor
 
@@ -171,9 +173,8 @@ localectl set-x11-keymap de chromebook
   * Window Manager Tweaks
   * Disable
 * Install compton
-  * cp conf/compton.conf .config/
-* Autostart
-  * cp conf/compton.desktop ./config/autostart/
+   Autostart
+    * cp conf/compton.desktop ./config/autostart/
 
 #### lightdm
 
@@ -277,9 +278,13 @@ xserver-command=X -dpi 162
 
 ## WIP
 
-Temporary problems with suspend and video
-* xf86-video-intel driver
+### Temporary problems with suspend and video
+
+* install xf86-video-intel driver
 * kernel parameter tpm_tis.force=1 tpm_tis.interrupts=0
-  * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
-  * https://wiki.gentoo.org/wiki/Google_Chromebook_Pixel_LTE
-  * https://github.com/longsleep/pixel-linux
+
+status: works fine for some days
+
+* https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
+* https://wiki.gentoo.org/wiki/Google_Chromebook_Pixel_LTE
+* https://github.com/longsleep/pixel-linux
