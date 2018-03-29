@@ -34,6 +34,7 @@ NOTE: Don't mind me if you brick your machine :)
         - [Font-size at lightdm](#font-size-at-lightdm)
   - [WIP](#wip)
     - [Temporary problems with suspend and video](#temporary-problems-with-suspend-and-video)
+    - [hdd problem](#hdd-problem)
 
 <!-- /TOC -->
 
@@ -109,28 +110,28 @@ Slow, but enough storage!
 
 * Appearance
   * Style
-    * Numix-Frost-Light
+    * Adapta-Eta
   * Icons
-    * Numix-Circle-Light
+    * Numix
 * Windows Manager
   * Style
-    * Arc-solid
+    * Adapta
     * Title Font
       * Roboto 8
 * qt5ct
   * Style
-    * gtk
+    * gtk2
   * Fonts
     * Roboto Regular 10
   * Icon Theme
-    * Numix-Circle-Light
+    * Numix
 
 #### Fonts
 
 * Settings
   * Appearance
     * Roboto 10 (Install)
-    * Custom DPI Settings: 170
+    * Custom DPI Settings: 168
 
 #### Cursor
 
@@ -273,7 +274,7 @@ something like:
 ```
 # /etc/lightdm/lightdm.conf.d/dpi.conf
 [SeatDefaults]
-xserver-command=X -dpi 162
+xserver-command=X -dpi 168
 ```
 
 ## WIP
@@ -288,3 +289,10 @@ status: works fine for some days
 * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
 * https://wiki.gentoo.org/wiki/Google_Chromebook_Pixel_LTE
 * https://github.com/longsleep/pixel-linux
+
+### hdd problem
+
+[14995.898286] ata1.00: failed command: READ FPDMA QUEUED
+[14995.898301] ata1.00: cmd ... tag 26 ncq dma 131072 in
+                        res ... Emask 0x4 (timeout)
+[14995.898308] ata1.00: status: { DRDY }
