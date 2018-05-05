@@ -34,7 +34,6 @@ NOTE: Don't mind me if you brick your machine :)
         - [Font-size at lightdm](#font-size-at-lightdm)
   - [WIP](#wip)
     - [Temporary problems with suspend and video](#temporary-problems-with-suspend-and-video)
-    - [wifi](#wifi)
     - [more](#more)
     - [hdd problem](#hdd-problem)
 
@@ -97,9 +96,8 @@ Slow, but enough storage!
   * systemd-boot
   * Add kernel parameter
     * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
+    * For network connectivity add: pci=noaer
     * /boot/loader/entries/antergos.conf
-
-* pci=noaer
 
 #### libinput-gestures
 
@@ -289,10 +287,6 @@ xserver-command=X -dpi 168
 * kernel parameter tpm_tis.force=1 tpm_tis.interrupts=0
 
 status: works fine for some days
-
-### wifi
-
-* pci=noaer
 
 ### more
 
