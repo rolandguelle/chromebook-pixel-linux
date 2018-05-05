@@ -34,6 +34,7 @@ NOTE: Don't mind me if you brick your machine :)
         - [Font-size at lightdm](#font-size-at-lightdm)
   - [WIP](#wip)
     - [Temporary problems with suspend and video](#temporary-problems-with-suspend-and-video)
+    - [Samba Shares](#samba-shares)
     - [more](#more)
     - [hdd problem](#hdd-problem)
 
@@ -287,6 +288,10 @@ xserver-command=X -dpi 168
 * kernel parameter tpm_tis.force=1 tpm_tis.interrupts=0
 
 status: works fine for some days
+
+### Samba Shares
+
+Install "gvfs-smb" for Thunar.
 
 ### more
 
