@@ -13,9 +13,9 @@ NOTE: Don't mind me if you brick your machine :)
     - [Remove ChromeOS](#remove-chromeos)
     - [BIOS](#bios)
     - [Expand your Hard Drive Capacity](#expand-your-hard-drive-capacity)
-  - [Install](#install)
-    - [Antergos](#antergos)
-      - [libinput-gestures](#libinput-gestures)
+  - [Antergos](#antergos)
+    - [Kernel parameter](#kernel-parameter)
+    - [libinput-gestures](#libinput-gestures)
     - [Tweaks](#tweaks)
       - [Theme & Icons](#theme-icons)
       - [Fonts](#fonts)
@@ -25,18 +25,15 @@ NOTE: Don't mind me if you brick your machine :)
       - [Compositor](#compositor)
       - [lightdm](#lightdm)
       - [Backlight Brightness](#backlight-brightness)
-    - [GalliumOS](#galliumos)
-      - [Issues](#issues)
-        - [libinput](#libinput)
-        - [Keyboard](#keyboard)
-        - [Disable bluetooth](#disable-bluetooth)
-        - [WIFI](#wifi)
-        - [Font-size at lightdm](#font-size-at-lightdm)
-  - [WIP](#wip)
-    - [Temporary problems with suspend and video](#temporary-problems-with-suspend-and-video)
-    - [Samba Shares](#samba-shares)
-    - [more](#more)
-    - [hdd problem](#hdd-problem)
+      - [Samba Shares](#samba-shares)
+  - [GalliumOS](#galliumos)
+    - [libinput](#libinput)
+    - [Keyboard](#keyboard)
+    - [Disable bluetooth](#disable-bluetooth)
+    - [WIFI](#wifi)
+    - [Tweaks](#tweaks)
+      - [Font-size at lightdm](#font-size-at-lightdm)
+  - [More](#more)
 
 <!-- /TOC -->
 
@@ -87,20 +84,23 @@ sudo hdparm -Tt /dev/sda
 
 Slow, but enough storage!
 
-## Install
+## Antergos
 
-### Antergos
+- Install OS: https://antergos.com/
+- Boot Manager: systemd-boot
 
-* Install OS
-  * https://antergos.com/
-* Boot Manager
-  * systemd-boot
-  * Add kernel parameter
-    * https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
-    * For network connectivity add: pci=noaer
-    * /boot/loader/entries/antergos.conf
+### Kernel parameter
 
-#### libinput-gestures
+- https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
+- /boot/loader/entries/antergos.conf
+
+```
+# /boot/loader/entries/antergos.conf
+options tpm_tis.force=1 tpm_tis.interrupts=0
+options pcie_aspm=off pci=noaer libata.noacpi=1
+```
+
+### libinput-gestures
 
 * Install "libinput-gestures"
   * libinput-gestures-setup 
@@ -149,15 +149,10 @@ Slow, but enough storage!
 
 #### Power Management
 
-Install TLP tools:
+Install & enable TLP tools:
 
 ```shell
 sudo pacman -S tlp tlp-rdw
-```
-
-Enable TLP tools:
-
-```shell
 sudo systemctl enable tlp
 sudo systemctl enable tlp-sleep
 ```
@@ -172,13 +167,13 @@ localectl set-x11-keymap de chromebook
 
 #### Compositor
 
-* Disable XFCE Compositor
-  * Settings  
-  * Window Manager Tweaks
-  * Disable
-* Install compton
-   Autostart
-    * cp conf/compton.desktop ./config/autostart/
+- Disable XFCE Compositor
+  - Settings  
+  - Window Manager Tweaks
+  - Disable
+- Install compton
+  - Autostart
+  - cp conf/compton.desktop ./config/autostart/
 
 #### lightdm
 
@@ -214,7 +209,11 @@ localectl set-x11-keymap de chromebook
       * /usr/local/bin/brightness up chromeos::kbd_backlight
       * /usr/local/bin/brightness down chromeos::kbd_backlight
 
-### GalliumOS
+#### Samba Shares
+
+"gvfs-smb" for Thunar.
+
+## GalliumOS
 
 My first try, but I've problems with WIFI.
 
@@ -222,9 +221,7 @@ As describted at https://mrchromebox.tech, I tried 2.2:
 
 * https://galliumos.org/releases/nightly/galliumos-braswell-xenon-20171227T072217Z.iso
 
-#### Issues
-
-##### libinput
+### libinput
 
 ```shell
 sudo apt install xserver-xorg-input-libinput
@@ -248,11 +245,11 @@ Tmp fix:
 xinput set-prop 11 277 1
 ```
 
-##### Keyboard
+### Keyboard
 
 Keyboard, Layout, Chromebook (most models), No overlay
 
-##### Disable bluetooth
+### Disable bluetooth
 
 ```shell
 sudo apt-get install dconf
@@ -261,7 +258,7 @@ navigate to org.blueman.plugins.powermanager
 set "auto-power-on" to "false"
 ```
 
-##### WIFI
+### WIFI
 
 GalliumOS lost connectivity :(
 
@@ -269,7 +266,9 @@ GalliumOS lost connectivity :(
 
 At this moment, no fix.
 
-##### Font-size at lightdm
+### Tweaks
+
+#### Font-size at lightdm
 
 * dpi setting // font
 
@@ -280,28 +279,8 @@ something like:
 xserver-command=X -dpi 168
 ```
 
-## WIP
+## More
 
-### Temporary problems with suspend and video
-
-* install xf86-video-intel driver
-* kernel parameter tpm_tis.force=1 tpm_tis.interrupts=0
-
-status: works fine for some days
-
-### Samba Shares
-
-Install "gvfs-smb" for Thunar.
-
-### more
-
-* https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
-* https://wiki.gentoo.org/wiki/Google_Chromebook_Pixel_LTE
-* https://github.com/longsleep/pixel-linux
-
-### hdd problem
-
-[14995.898286] ata1.00: failed command: READ FPDMA QUEUED
-[14995.898301] ata1.00: cmd ... tag 26 ncq dma 131072 in
-                        res ... Emask 0x4 (timeout)
-[14995.898308] ata1.00: status: { DRDY }
+- https://wiki.archlinux.org/index.php/Chrome_OS_devices#With_kernel_parameters
+- https://wiki.gentoo.org/wiki/Google_Chromebook_Pixel_LTE
+- https://github.com/longsleep/pixel-linux
