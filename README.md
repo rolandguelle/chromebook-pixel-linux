@@ -1,10 +1,8 @@
 # Linux on Chrome Book Pixel
 
-**Chrome Book Pixel** (Link / 2013) Linux setup with coreboot BIOS, storage and with a light weight WM (XFCE4).
+**Chrome Book Pixel** (Link / 2013) Linux setup with coreboot BIOS, **more storage** and a light weight WM (XFCE4).
 
 NOTE: Don't mind me if you brick your machine :)
-
-*Work in Progress*
 
 <!-- TOC -->
 
@@ -13,6 +11,10 @@ NOTE: Don't mind me if you brick your machine :)
     - [Remove ChromeOS](#remove-chromeos)
     - [BIOS](#bios)
     - [Expand your Hard Drive Capacity](#expand-your-hard-drive-capacity)
+      - [Remove LTE Dummy Slot](#remove-lte-dummy-slot)
+      - [Inserd SD Adapter](#inserd-sd-adapter)
+      - [Expand with 2 SD Cards](#expand-with-2-sd-cards)
+      - [Benchmarks](#benchmarks)
   - [Antergos](#antergos)
     - [Kernel parameter](#kernel-parameter)
     - [libinput-gestures](#libinput-gestures)
@@ -55,18 +57,27 @@ NOTE: Don't mind me if you brick your machine :)
 
 ### Expand your Hard Drive Capacity
 
-Adding more storage to the Chromebook Pixel!
+Add more storage to the Chromebook Pixel!
 
-* Replace "LTE Dummy Slot" with "Mini PCIe Memory Card Adapter"
-  * mSATA doesn't work :(
-    * https://www.youtube.com/watch?v=x0_u8bjQFzg
-  * But this adapter works :)
-    * https://www.amazon.de/gp/product/B01AOVJ456/ref=oh_aui_detailpage_o04_s00?ie=UTF8&psc=1
-* Expand with 2 SD Cards
-    * Card 1 (Used for /home)
-    * Card 2 (Used for develpment storage)
+* mSATA doesn't work :(
+  * https://www.youtube.com/watch?v=x0_u8bjQFzg
 
-Benchmarks:
+Replace "LTE Dummy Slot" with "Mini PCIe Memory Card Adapter"
+  * https://www.amazon.de/gp/product/B01AOVJ456/ref=oh_aui_detailpage_o04_s00?ie=UTF8&psc=1
+
+#### Remove LTE Dummy Slot
+
+![Remove LTE Dummy Slot](images/step1.jpg)
+
+#### Inserd SD Adapter
+
+![Inserd SD Adapter](images/step2.jpg)
+
+#### Expand with 2 SD Cards
+
+![Expand with 2 SD Cards](images/step3.jpg)
+
+#### Benchmarks
 
 ```shell
 sudo hdparm -Tt /dev/sda
