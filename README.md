@@ -144,7 +144,8 @@ options pcie_aspm=off pci=noaer libata.noacpi=1
 
 * Settings
   * Appearance
-    * Roboto 10 (Install)
+    * Default: Roboto 10
+		* Mono: Roboto 10
     * Custom DPI Settings: 168
 
 #### Cursor
